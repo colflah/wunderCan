@@ -8,11 +8,11 @@ import ast
 @route('/')
 def home_page():
 #	return "Hello"
-	return static_file('index.html', root='./')
+	return static_file('index.html', root='/var/www/wunderCan')
 
 @route('/static/<filepath:path>')
 def static(filepath):
-	return static_file(filepath, root='./static')
+	return static_file(filepath, root='/var/www/wunderCan/static')
 
 @route('/authorize/wunder')
 def authorizeWunder():
@@ -46,9 +46,7 @@ def authorizeCanvas():
     canvasAccessToken = ast.literal_eval(requests.post(url,data=json.dumps(payload),headers=headers).content)['access_token']
     
     # set as cookie
-    response.set_cookie('canvasToken',canvasAccessToken, path='/download')
-
-    
+    response.set_cookie('canvasToken',canvasAccessToken, path='/download')    
     
     #TODO
     # store canvas access token in canvasToken cookie
@@ -62,7 +60,7 @@ def download():
     # TODO: set access tokens in scraper to the above tokens
 
     # testing forced download. replace this with downloaded file
-    return static_file('index.html', root='./',download='example.html')
+    return static_file('index.html', root='/var/www/wunderCan',download='example.html')
 
 
 
