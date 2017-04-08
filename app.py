@@ -40,8 +40,8 @@ def authorizeCanvas():
     code = request.query.code
     
     # exchange code for access token
-    url = 'https://www.nuevaschool.instructure.com/login/oauth2/auth'
-    payload = {'grant_type':'authorization_code','client_id':'52960000000000002','client_secret':'I5TXjoH4cG2bUbDuYYEKloVguAftsTpXE4aILIZIxVXKXenZHGlF4GG3rdhyVcre','redirect_uri':'https://wundercan.tk/authorize/canvas','code':code}
+    url = 'https://nuevaschool.instructure.com/login/oauth2/auth'
+    payload = {'grant_type':'authorization_code','client_id':'52960000000000002','client_secret':'I5TXjoH4cG2bUbDuYYEKloVguAftsTpXE4aILIZIxVXKXenZHGlF4GG3rdhyVcre','redirect_uri':'http://wundercan.tk/authorize/canvas','code':code}
     headers = {'content-type':'application/json'}
     canvasAccessToken = ast.literal_eval(requests.post(url,data=json.dumps(payload),headers=headers).content)['access_token']
     
