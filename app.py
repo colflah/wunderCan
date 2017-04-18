@@ -40,7 +40,7 @@ def authorizeCanvas():
     code = request.query.code
     
     # exchange code for access token
-    url = 'https://nuevaschool.instructure.com/login/oauth2/auth'
+    url = 'https://nuevaschool.instructure.com/login/oauth2/token'
     payload = {'grant_type':'authorization_code','client_id':'52960000000000002','client_secret':'I5TXjoH4cG2bUbDuYYEKloVguAftsTpXE4aILIZIxVXKXenZHGlF4GG3rdhyVcre','redirect_uri':'http://wundercan.tk/authorize/canvas','code':code}
     headers = {'content-type':'application/json'}
     canvasAccessToken = ast.literal_eval(requests.post(url,data=json.dumps(payload),headers=headers).content)['access_token']
@@ -50,7 +50,7 @@ def authorizeCanvas():
     
     #TODO
     # store canvas access token in canvasToken cookie
-    return "TODO"
+    return canvasAccessToken
 
 @route('/download')
 def download():
