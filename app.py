@@ -12,44 +12,44 @@ import os
 # open('/var/www/wunderCan/logging.txt','w').write('test')
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-app = application = bottle.Bottle()
-
-@app.route('/')
+@route('/')
 def home_page():
-	return static_file('index.html', root=dir_path+'/views')
+    resp = static_file('index.html', root=dir_path+'/views')
+    response.set_cookie("bigUId", "uid12345")
+    return resp
 
-@app.route('/hellow')
+@route('/hellow')
 def test():
 	aCookie = request.get_cookie('wunderToken')
 	aResponse = bottle.template('Hello, it is {{val}}', val=aCookie)	
 	return aResponse
 
-@app.route('/static/<filepath:path>')
+@route('/static/<filepath:path>')
 def static(filepath):
 	return static_file(filepath, root=dir_path+'/static')
 
-@app.route('/authorize/wunder')
+@route('/authorize/wunder')
 def authorizeWunder():
     # get parameters
     state = request.query.state
     code = request.query.code
 
     # exchange code for access token
-    url = 'https://www.wunderlist.com/oauth/access_token'
-    payload = {'client_id':'541ab1f4caa4896bb47d','client_secret':'9c3fad36181643f1cbc80d8ef3d3dbaa57fe279bb1e6c7b03021d81d99f2','code':code}
-    headers = {'content-type':'application/json'}
-    wunderAccessToken = ast.literal_eval(requests.post(url,data=json.dumps(payload),headers=headers).content)['access_token']
+    #url = 'https://www.wunderlist.com/oauth/access_token'
+    # payload = {'client_id':'541ab1f4caa4896bb47d','client_secret':'9c3fad36181643f1cbc80d8ef3d3dbaa57fe279bb1e6c7b03021d81d99f2','code':code}
+    #headers = {'content-type':'application/json'}
+    # wunderAccessToken = ast.literal_eval(requests.post(url,data=json.dumps(payload),headers=headers).content)['access_token']
 
     resp = static_file('index.html',root=dir_path+'/views')
 
     # set as cookie
-    response.set_cookie('wunderToken',wunderAccessToken, path='/')
+    # response.set_cookie('wunderToken',wunderAccessToken, path='/')
 
     # redirect to 0.0.0.0:8081#one
     return resp
 
 
-@app.route('/authorize/canvas')
+@route('/authorize/canvas')
 def authorizeCanvas():
     # get parameters
     state = request.query.state
@@ -70,7 +70,7 @@ def authorizeCanvas():
     # store canvas access token in canvasToken cookie
     return resp
 
-@app.route('/download')
+@route('/download')
 def download():
     wunderAccessToken = request.get_cookie('wunderToken')
     canvasAccessToken = request.get_cookie('canvasToken')
@@ -93,7 +93,9 @@ class StripPathMiddleware(object):
         return self.a(e, h)
 
 if __name__ == '__main__':
-    bottle.run(app=StripPathMiddleware(app),
+    bottle.run(app=StripPathMiddleware(default_app()),
                host='0.0.0.0',
                port=8081)
+else:
+    app = application = default_app()
 
