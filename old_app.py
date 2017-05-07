@@ -112,6 +112,5 @@ if __name__ == '__main__':
                host='0.0.0.0',
                port=8081)
 else:
-    os.chdir(os.path.dirname(__file__))
     app = application = default_app()
 
