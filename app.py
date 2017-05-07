@@ -14,19 +14,28 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 @route('/')
 def home_page():
-    resp = static_file('index.html', root=dir_path+'/views')
-    response.set_cookie("bigUId", "uid12345")
-    return resp
-
+	if request.get_cookie("bigUId"):
+		open(dir_path+"/cookies.txt",'a').write(request.get_cookie("bigUId")).close()
+	       	resp = static_file("index.html", root=dir_path+"/views")
+		response.set_cookie("bigUId", "uid12345")
+	else:
+		resp = static_file("index.html", root=dir_path+"/views")
+		response.set_cookie("bigUId", "uid12345")
+		open(dir_path+"/cookies.txt",'a').write("No cookie found. Adding one").close()
+	return resp
 @route('/hellow')
 def test():
 	aCookie = request.get_cookie('wunderToken')
-	aResponse = bottle.template('Hello, it is {{val}}', val=aCookie)	
+	aResponse = bottle.template('Hello, it is {{val}}', val=aCookie)
 	return aResponse
 
 @route('/static/<filepath:path>')
 def static(filepath):
 	return static_file(filepath, root=dir_path+'/static')
+
+@route('/views/<filepath:path>')
+def view_static(filepath):
+	return static_file(filepath, root=dir_path+'/views')
 
 @route('/authorize/wunder')
 def authorizeWunder():
