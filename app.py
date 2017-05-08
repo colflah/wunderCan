@@ -19,14 +19,14 @@ def website():
 
     app = bottle.Bottle()
 
-    bottle.TEMPLATE_PATH.insert(0, '/var/www/wunderCan/views/')
+    #bottle.TEMPLATE_PATH.insert(0, 'views')
 
     @app.route('/')
     def home_page():
     	cookies_log = open("cookies.txt","a")
     	if request.get_cookie("bigUId"):
     		cookies_log.write("cookie found")
-    	    resp = template("index")
+    	        resp = template("index")
     		response.set_cookie("bigUId", "uid12345")
     		cookies_log.close()
     		return resp
