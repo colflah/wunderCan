@@ -13,6 +13,10 @@ import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 def website():
+    web = open('website.txt','w')
+    web.write('is website run? yes')
+    web.close()
+
     app = bottle.Bottle()
 
     bottle.TEMPLATE_PATH.insert(0, 'views')
