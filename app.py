@@ -115,10 +115,19 @@ class StripPathMiddleware(object):
 
 
 if __name__ == '__main__':
-    bottle.run(app=StripPathMiddleware(default_app()),
+    bottle.run(app=StripPathMiddleware(website()),
                host='0.0.0.0',
                port=8081)
-if __name__.startswith('uwsgi'):
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+if __name__.startswith('app'):
+    #uwsgi = open("/var/www/wunderCan/uwsgiTest.txt","w")
+    #uwsgi.write("uwsgi success")
+    #uwsgi.close()
+    #paths = open("/var/www/wunderCan/paths.txt","w")
+#    paths.write("Default Directory:"+os.getcwd())
+ #   paths.write("os.path.dirname(__file__) is"+os.path.dirname(__file__))
+  #  paths.write("os.path.dirname(os.path.realpath(__file__)) is "+os.path.dirname(os.path.realpath(__file__)))
+   # paths.write("os.path.realpath(__file__) is "+os.path.realpath(__file__))
+    #paths.close()
+    os.chdir(os.path.dirname(__file__))
     app = application = website()
 
