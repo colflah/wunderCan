@@ -19,14 +19,14 @@ def website():
 
     app = bottle.Bottle()
 
-    bottle.TEMPLATE_PATH.insert(0, 'views')
+    bottle.TEMPLATE_PATH.insert(0, '/var/www/wunderCan/views/')
 
     @app.route('/')
     def home_page():
     	cookies_log = open("cookies.txt","a")
     	if request.get_cookie("bigUId"):
     		cookies_log.write("cookie found")
-    	       	resp = template("index")
+    	    resp = template("index")
     		response.set_cookie("bigUId", "uid12345")
     		cookies_log.close()
     		return resp
@@ -45,11 +45,11 @@ def website():
 
     @app.route('/static/<filepath:path>')
     def static(filepath):
-    	return static_file(filepath, root='/static')
+    	return static_file(filepath, root='./static')
 
     @app.route('/views/<filepath:path>')
     def view_static(filepath):
-    	return static_file(filepath, root='/views')
+    	return static_file(filepath, root='./views')
 
     @app.route('/authorize/wunder')
     def authorizeWunder():
@@ -63,7 +63,7 @@ def website():
         #headers = {'content-type':'application/json'}
         # wunderAccessToken = ast.literal_eval(requests.post(url,data=json.dumps(payload),headers=headers).content)['access_token']
 
-        resp = static_file('index.html',root='/views')
+        resp = static_file('index.html',root='./views')
 
         # set as cookie
         # response.set_cookie('wunderToken',wunderAccessToken, path='/')
@@ -83,7 +83,7 @@ def website():
         headers = {'content-type':'application/json'}
         canvasAccessToken = ast.literal_eval(requests.post(url,data=json.dumps(payload),headers=headers).content)['access_token']
     
-        resp = static_file('index.html', root='/views')
+        resp = static_file('index.html', root='./views')
 
         # set as cookie
         response.set_cookie('canvasToken',canvasAccessToken, path='/')    
@@ -100,7 +100,7 @@ def website():
         # TODO: set access tokens in scraper to the above tokens
 
         # testing forced download. replace this with downloaded file
-        return static_file('index.html', root='/views')
+        return static_file('index.html', root='./views')
 
     return app
     
