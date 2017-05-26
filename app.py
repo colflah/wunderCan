@@ -27,15 +27,18 @@ def website():
     	if request.get_cookie("bigUId"):
     		#cookies_log.write("cookie found")
     	        resp = template("index")
-    		#response.set_cookie("bigUId", "uid12345")
+    		response.set_cookie("bigUId", "uid12345")
     		#ookies_log.close()
     		return resp
     	else:
     		resp = template("index")
-    		#response.set_cookie("bigUId", "uid12345")
+    		response.set_cookie("bigUId", "uid12345")
     		#cookies_log.write("No cookie found. Adding one")
     		#cookies_log.close()
     		return resp
+    @app.route('/auth')
+    def auth():
+        bottle.redirect("ToDoAuth://")
 
     @app.route('/hellow')
     def test():
@@ -53,6 +56,10 @@ def website():
 
     @app.route('/authorize/wunder')
     def authorizeWunder():
+	afile = open('wuner.txt','w')
+	afile.write("success")
+	afile.close()
+
         # get parameters
         state = request.query.state
         code = request.query.code
@@ -62,11 +69,10 @@ def website():
         payload = {'client_id':'541ab1f4caa4896bb47d','client_secret':'9c3fad36181643f1cbc80d8ef3d3dbaa57fe279bb1e6c7b03021d81d99f2','code':code}
         headers = {'content-type':'application/json'}
         wunderAccessToken = ast.literal_eval(requests.post(url,data=json.dumps(payload),headers=headers).content)['access_token']
-
         resp = template("index")
 
         # set as cookie
-        response.set_cookie('wunderToken',wunderAccessToken, path='/')
+        response.set_cookie('wunderToken','works',path='/authorize/wunder')
 
         # redirect to 0.0.0.0:8081#one
         return resp
@@ -85,7 +91,7 @@ def website():
     
         resp = template("index")
         # set as cookie
-        response.set_cookie('canvasToken',canvasAccessToken, path='/')    
+        response.set_cookie('canvasToken','works')    
     
         #TODO
         # store canvas access token in canvasToken cookie
