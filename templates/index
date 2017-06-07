@@ -24,23 +24,8 @@
 				</header>
 				<div class="container">
 					<ul class="actions">
-						<li><a href="#one" class="button special scrolly">Get It</a></li>
+						<li><a href="#two" class="button special scrolly">Get It</a></li>
 					</ul>
-				</div>
-			</section>
-
-		<!-- One -->
-			<section id="one" class="main special">
-				<div class="container">
-					<span class="image fit primary"><img src="static/images/pic01.jpg" alt="" /></span>
-					<div class="content">
-						<header class="major">
-							<h2>Give Us Access</h2>
-						</header>
-						<p>To Wunderlist: <a href="https://www.wunderlist.com/oauth/authorize?client_id=541ab1f4caa4896bb47d&redirect_uri=http://wundercan.tk/authorize/wunder&state=3737abdca083dca429439f78b5aab67b410e19bd965be2a283d80bf2bf03d6" target="_parent">Click here</a></p>
-						<p>To Canvas: <a href="https://nuevaschool.instructure.com/login/oauth2/auth?client_id=52960000000000002&response_type=code&redirect_uri=http://wundercan.tk/authorize/canvas" target="_parent">Click here</a></p>
-					</div>
-					<a href="#two" class="goto-next scrolly">Next</a>
 				</div>
 			</section>
 
@@ -54,24 +39,6 @@
 							<h2>Download</h2>
 						</header>
 						<p><a href="http://wundercan.tk/download" download>Click here to download.</a></p>
-						<ul class="icons-grid">
-							<li>
-								<span class="icon major fa-camera-retro"></span>
-								<h3>Magna Etiam</h3>
-							</li>
-							<li>
-								<span class="icon major fa-pencil"></span>
-								<h3>Lorem Ipsum</h3>
-							</li>
-							<li>
-								<span class="icon major fa-code"></span>
-								<h3>Nulla Tempus</h3>
-							</li>
-							<li>
-								<span class="icon major fa-coffee"></span>
-								<h3>Sed Feugiat</h3>
-							</li>
-						</ul>
 					</div>
 					<a href="#three" class="goto-next scrolly">Next</a>
 				</div>
@@ -83,9 +50,16 @@
 					<span class="image fit primary"><img src="static/images/pic03.jpg" alt="" /></span>
 					<div class="content">
 						<header class="major">
-							<h2>Thanks!</h2>
+							<h2>Details</h2>
 						</header>
-						<p>Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat. Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam adipiscing interdum.</p>
+						<p>Working on WunderCan has given me a chance to develop knowledge of a wide array of programming topics.
+						It primarily was a chance to get comfortable working with APIs. An API (Application Programming Interface)
+						is set of URIs (e.g. www.example.com/this/part/is/called/the/URI) that allow one to interact with a company's database(s).
+					In my case, this process required that I be able to make requests to Canvas and Wunderlist from within Python and Swift programs. 
+					While I had prior experience in Python, I had never used Swift before (the language used to make Mac apps). I also had to become more skilled at shell scripts,
+					which were used frequently to make, test, and debug WunderCan. Another important component of WunderCan was the use of a MongoDB database stored on mLabs (a database-in-the-cloud service).
+				This was used to store user assignment's on. Two other key tools used were Amazon's EC2 servers in the cloud (for hosting the website) and LaunchDaemons (programs that run at set intervals in the background on a user's computer).
+				And finally, I created the app's installer by writing a shell script and using a service called Platypus to compile it into a Mac app.</p>
 					</div>
 					<a href="#footer" class="goto-next scrolly">Next</a>
 				</div>
