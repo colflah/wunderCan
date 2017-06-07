@@ -1,0 +1,1 @@
+{"access_token":"5296~JnahbUj14K08cVDUejEOXxlO8eVSeGrB0tfpZHmfjY4TTHnhV878pkCP3x5gx9Iz","token_type":"Bearer","user":{"id":88,"name":"Colin Flaherty"},"refresh_token":"5296~bTKZ0quAcXrzRUcxJ67SxmBQzcLQLOKuGKhvGHZAXctDUsImxNolaQAIrEPkRfTH","expires_in":3600}
